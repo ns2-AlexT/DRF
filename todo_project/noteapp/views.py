@@ -1,5 +1,5 @@
-# from rest_framework.response import Response
-# from rest_framework.generics import get_object_or_404
+from rest_framework.response import Response
+from rest_framework.generics import get_object_or_404
 # from rest_framework.renderers import JSONRenderer, BrowsableAPIRenderer
 
 from rest_framework.pagination import LimitOffsetPagination
@@ -73,6 +73,13 @@ class ToDoNoteModelViewSet(ModelViewSet):
     serializer_class = ToDoNoteModelSerializer
     filterset_class = ToDoNoteFilter
     pagination_class = ToDONoteLimitOffsetPagination
+
+    def destroy(self, request, pk=None, *args, **kwargs):
+        todonote = get_object_or_404(ToDoNote, pk=pk)
+        serializer_class = ToDoNoteModelSerializer
+        todonote.is_active = False
+        todonote.save()
+        return Response(serializer_class.data)
 
 
 # class ToDoNoteCreateAPIView(CreateAPIView):
