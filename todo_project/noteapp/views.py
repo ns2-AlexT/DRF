@@ -76,6 +76,7 @@ class ToDoNoteModelViewSet(ModelViewSet):
     
     def destroy(self, request, pk=None, *args, **kwargs):
         todonote = get_object_or_404(ToDoNote, pk=pk)
+        serializer_class = ToDoNoteModelSerializer
         todonote.is_active = False
         todonote.save()
         return Response(serializer_class.data)
