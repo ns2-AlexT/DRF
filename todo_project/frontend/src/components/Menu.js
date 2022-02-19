@@ -1,26 +1,32 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { Link} from "react-router-dom";
 
 const Menu = () => {
     return (
-        <ul className="header">
-            <li>
-                <a href="#">
-                    Users
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Tasks
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    Log in
-                </a>
-            </li>
-        </ul>
-)
+        <nav>
+            <ul className="header">
+                <li>
+                    <Link to='/'>
+                        Users
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/projects/'>
+                        Projects
+                    </Link>
+                </li>
+                <li>
+                    <Link to='/notes/'>
+                        Tasks
+                    </Link>
+                </li>
+                <li>
+                        Log in
+                </li>
+            </ul>
+        </nav>
+    )
 }
 
 export default Menu

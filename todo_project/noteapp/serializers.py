@@ -13,7 +13,7 @@ class ProjectModelSerializer(ModelSerializer):
 
 class ToDoNoteModelSerializer(ModelSerializer):
     # name_of_project = serializers.StringRelatedField()
-    # author_of_todo = serializers.StringRelatedField()
+    author_of_todo = serializers.StringRelatedField()
 
     class Meta:
         model = ToDoNote
