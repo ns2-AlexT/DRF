@@ -9,15 +9,15 @@ from .models import User
 from .serializers import UserModelSerializer
 
 
-class UserLimitOffsetPagination(LimitOffsetPagination):
-    default_limit = 5
+# class UserLimitOffsetPagination(LimitOffsetPagination):
+#     default_limit = 5
 
 
 class UserModelViewSet(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin,
                        viewsets.GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserModelSerializer
-    pagination_class = UserLimitOffsetPagination
+    # pagination_class = UserLimitOffsetPagination
 
 
 # class UserViewSet(ViewSet):
