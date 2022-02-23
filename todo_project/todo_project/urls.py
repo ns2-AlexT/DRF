@@ -15,11 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
 from userapp.views import UserModelViewSet
 # from noteapp.views import ProjectModelViewSet, ToDoNoteViewSet
 from noteapp.views import ProjectModelViewSet, ToDoNoteModelViewSet
+
 # from noteapp.views import ProjectModelViewSet, ToDoNoteListAPIView, ToDoNoteCreateAPIView
 
 router = DefaultRouter()
@@ -33,7 +35,9 @@ router.register('notes', ToDoNoteModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
-    path('api-auth/', include('rest_framework.urls')),
+    path('api-token-auth/', obtain_auth_token),
+
+    # path('api-auth/', include('rest_framework.urls')),
     # path('api/list/', ToDoNoteListAPIView.as_view()),
     # path('api/create/', ToDoNoteCreateAPIView.as_view()),
     # path('api/upd/<int:pk>/', ToDoNoteUpdateAPIView.as_view()),
