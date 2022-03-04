@@ -1,8 +1,17 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Menu = () => {
+
+export default function Menu({status, logout}) {
+
+    let button = ''
+    if (status.is_in) {
+        button = <button onClick={logout}> {status.user} Logout</button>
+    } else {
+        button = <Link to='/login/'>Login</Link>
+    }
+
     return (
         <nav>
             <ul className="header">
@@ -12,21 +21,19 @@ const Menu = () => {
                     </Link>
                 </li>
                 <li>
-                    <Link to='/projects/'>
+                    <Link to='/projects'>
                         Projects
                     </Link>
                 </li>
                 <li>
-                    <Link to='/notes/'>
+                    <Link to='/notes'>
                         Tasks
                     </Link>
                 </li>
                 <li>
-                        Log in
+                    {button}
                 </li>
             </ul>
         </nav>
     )
 }
-
-export default Menu
