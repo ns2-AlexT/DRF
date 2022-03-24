@@ -15,6 +15,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from drf_yasg import openapi
+from drf_yasg.views import get_schema_view
+from rest_framework import permissions
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
 
@@ -32,10 +35,29 @@ router.register('notes', ToDoNoteModelViewSet)
 # router.register('users', UserViewSet, basename='users')
 # router.register('notes', ToDoNoteViewSet, basename='notes')
 
+'''
+Schema for swagger
+'''
+schema_for_documentation = get_schema_view(
+    openapi.Info(
+        title='To do app',
+        description='To do desk',
+        default_version='0.1',
+        contact=openapi.Contact(email='todoapp@mail.com'),
+        license=openapi.License(name='MIT License')
+    ),
+    public=True,
+    permission_classes=(permissions.AllowAny,)
+)
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
+
+    # path('swagger/', schema_for_documentation.with_ui('swagger')),
+    path('swagger<str:format>', schema_for_documentation.without_ui()),
+    path('redoc/', schema_for_documentation.with_ui('redoc')),
 
     # path('api-auth/', include('rest_framework.urls')),
     # path('api/list/', ToDoNoteListAPIView.as_view()),
