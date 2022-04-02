@@ -1,8 +1,8 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Link} from "react-router-dom";
+import {Link} from "react-router-dom";
 
-const Project = ({project}) => {
+const Project = ({project, delete_project}) => {
     return (
         <tr>
             <td>
@@ -14,11 +14,14 @@ const Project = ({project}) => {
             <td>
                 {project.list_of_users}
             </td>
+            <td>
+                <button onClick={() => delete_project(project.id)} type={'button'}>delete</button>
+            </td>
         </tr>
     )
 }
 
-const ProjectList = ({projects}) => {
+const ProjectList = ({projects, delete_project}) => {
     return (
         <div className="container">
             <hr/>
@@ -37,8 +40,10 @@ const ProjectList = ({projects}) => {
                 </th>
             </table>
             <table className='container'>
-                {projects.map((project_string) => <Project project={project_string}/>)}
+                {projects.map((project_string) => <Project project={project_string}
+                                                           delete_project={delete_project}/>)}
             </table>
+            <Link to={'/projects/create'}>New project</Link>
         </div>
     )
 }
