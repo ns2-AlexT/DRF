@@ -20,6 +20,7 @@ from drf_yasg.views import get_schema_view
 from rest_framework import permissions
 from rest_framework.authtoken.views import obtain_auth_token
 from rest_framework.routers import DefaultRouter
+from graphene_django.views import GraphQLView
 
 from userapp.views import UserModelViewSet
 # from noteapp.views import ProjectModelViewSet, ToDoNoteViewSet
@@ -58,6 +59,8 @@ urlpatterns = [
     # path('swagger/', schema_for_documentation.with_ui('swagger')),
     path('swagger<str:format>', schema_for_documentation.without_ui()),
     path('redoc/', schema_for_documentation.with_ui('redoc')),
+
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 
     # path('api-auth/', include('rest_framework.urls')),
     # path('api/list/', ToDoNoteListAPIView.as_view()),
