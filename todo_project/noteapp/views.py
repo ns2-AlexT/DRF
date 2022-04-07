@@ -32,8 +32,8 @@ class ToDoNoteModelViewSet(ModelViewSet):
     filterset_class = ToDoNoteFilter
     # pagination_class = ToDONoteLimitOffsetPagination
 
-    def destroy(self, request, pk=None, *args, **kwargs):
-        todonote = get_object_or_404(ToDoNote, pk=pk)
-        todonote.is_active_of_todo = False
-        todonote.save()
-        return Response(status.HTTP_200_OK)
+    # def destroy(self, request, pk=None, *args, **kwargs):
+    #     todonote = get_object_or_404(ToDoNote, pk=pk)
+    #     todonote.is_active_of_todo = False
+    #     todonote.save()
+    #     return Response(status.HTTP_200_OK)

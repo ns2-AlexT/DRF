@@ -1,7 +1,7 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Note = ({note}) => {
+const Note = ({note, delete_note}) => {
     return (
         <tr>
             <td>
@@ -16,11 +16,14 @@ const Note = ({note}) => {
             <td>
                 {note.author_of_todo}
             </td>
+            <td>
+                <button onClick={()=>delete_note(note.id)} type={'button'}>delete</button>
+            </td>
         </tr>
     )
 }
 
-const NoteList = ({notes}) => {
+const NoteList = ({notes, delete_note}) => {
     return (
         <div className="container">
             <hr/>
@@ -39,7 +42,7 @@ const NoteList = ({notes}) => {
                 </th>
             </table>
             <table className='container'>
-                {notes.map((note_string) => <Note note={note_string}/>)}
+                {notes.map((note_string) => <Note note={note_string} delete_note={delete_note}/>)}
             </table>
         </div>
     )

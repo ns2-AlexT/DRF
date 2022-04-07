@@ -1,6 +1,6 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import {useParams} from "react-router-dom";
+import {Link, useParams} from "react-router-dom";
 
 const Note = ({note}) => {
     return (
@@ -42,6 +42,7 @@ const NotesOfProject = ({notes}) => {
             <table className='container'>
                 {filtered_notes.map((note_string) => <Note note={note_string}/>)}
             </table>
+            <Link to={`/note/create/?id_project=${id}`} >New note</Link>
         </div>
     )
 }
