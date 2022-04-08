@@ -115,7 +115,7 @@ class App extends React.Component {
                     author_of_todo: this.get_id(this.state.users, this.state.status_of_auth.user),
                     text_of_todo: text_of_note
         }
-        axios.post('http://127.0.0.1:8000/api/notes', data,{headers}).then(response => {this.load_all_data_on_start()
+        axios.post('http://127.0.0.1:8000/api/notes/', data,{headers}).then(response => {this.load_all_data_on_start()
         }).catch(error => {
             console.log(error)
         })
@@ -131,8 +131,9 @@ class App extends React.Component {
     }
 
     create_project(name_of_project, authors) {
+        console.log('Get from project form the list of users ', authors)
         const headers = this.get_headers()
-        const data = {name_of_project: name_of_project, list_of_users: [7, 8]}
+        const data = {name_of_project: name_of_project, list_of_users: authors}
         axios.post(`http://127.0.0.1:8000/api/projects/`, data, {headers}).then(response => {
             this.load_all_data_on_start()
         }).catch(error => {
