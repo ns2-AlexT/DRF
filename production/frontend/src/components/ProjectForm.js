@@ -24,17 +24,15 @@ class ProjectForm extends React.Component {
         }
         let authors = []
         for (let i = 0; i < event.target.selectedOptions.length; i++) {
-            console.log('=== ', event.target.selectedOptions.item(i).value)
             authors.push(event.target.selectedOptions.item(i).value)
         }
-        console.log(authors.id)
         this.setState({'authors': authors})
-        console.log('===', this.state.authors)
+        console.log('From project_form : ', this.state.authors, ' add users to create a project')
     }
 
     handleSubmit(event) {
         this.props.create_project(this.state.name_of_project, this.state.authors)
-        console.log(this.state.name_of_project, ' **** ', this.state.authors)
+        // console.log(this.state.name_of_project, ' **** ', this.state.authors)
         event.preventDefault()
     }
 
