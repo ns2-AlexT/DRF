@@ -16,7 +16,6 @@ class NoteForm extends React.Component {
 
     handleSubmit(event) {
         this.props.create_note(this.state.project_id, this.state.text_of_note)
-        console.log(this.state.project_id, ' **** ', this.state.text_of_note)
         event.preventDefault()
     }
 
