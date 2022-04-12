@@ -53,6 +53,7 @@ schema_for_documentation = get_schema_view(
 )
 
 urlpatterns = [
+    # path('', TemplateView.as_view(template_name='index.html')),
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
     path('api-token-auth/', obtain_auth_token),
@@ -61,7 +62,7 @@ urlpatterns = [
     path('swagger<str:format>', schema_for_documentation.without_ui()),
     path('redoc/', schema_for_documentation.with_ui('redoc')),
 
-    path('graphql/', GraphQLView.as_view(graphiql=True)),
+    path('graphql/', GraphQLView.as_view(graphiql=True))
 
     # path('api-auth/', include('rest_framework.urls')),
     # path('api/list/', ToDoNoteListAPIView.as_view()),
@@ -69,5 +70,4 @@ urlpatterns = [
     # path('api/upd/<int:pk>/', ToDoNoteUpdateAPIView.as_view()),
     # path('api/del/<int:pk>/', ToDoNoteDestroyAPIView.as_view()),
     # path('api/det/<int:pk>/', ToDoNoteRetrieveAPIView.as_view()),
-    path('', TemplateView.as_view(template_name='index.html'))
 ]
